@@ -19,7 +19,7 @@ public class Autor {
 	@Column(nullable = false)
 	private String nome;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String email;
 
 	@CreationTimestamp

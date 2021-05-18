@@ -1,13 +1,7 @@
 package me.rayll.tratamentodeexcessoes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
-import javax.servlet.annotation.HttpMethodConstraint;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -30,7 +24,7 @@ public class TratamentoDeExcessoesController {
 			String field = ((FieldError) error).getField();
 			String defaultErrorMessage = error.getDefaultMessage();
 			
-			listaDeErros.add("O campo " + field + " " + defaultErrorMessage);
+			listaDeErros.add(field + ": " + defaultErrorMessage);
 		}
 		return listaDeErros;
 	}

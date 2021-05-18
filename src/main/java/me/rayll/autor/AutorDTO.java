@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import me.rayll.validacoes.valorunico.ValorUnico;
+
 
 public class AutorDTO {
 
@@ -17,6 +19,7 @@ public class AutorDTO {
 
 	@NotEmpty
 	@Email
+	@ValorUnico(domainClass = Autor.class, fieldName = "email")
 	private String email;
 	
 	private String instante;

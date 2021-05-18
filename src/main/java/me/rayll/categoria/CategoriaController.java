@@ -1,4 +1,4 @@
-package me.rayll.autor;
+package me.rayll.categoria;
 
 import javax.validation.Valid;
 
@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/casadocodigo/v1/autor")
-public class AutorController {
+@RequestMapping("/casadocodigo/v1/categoria")
+public class CategoriaController {
 	
 	@Autowired
-	private AutorRepository repository;
+	private CategoriaRepository repository;
 	
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.OK)
-	public AutorDTO CadastroNovoAutor(@Valid @RequestBody AutorDTO form) {
-		Autor autorSalvo = repository.save(new Autor(form));
-		return new AutorDTO(autorSalvo);
+	public CategoriaDTO CadastroNovaCategoria(@Valid @RequestBody CategoriaDTO form) {
+		Categoria categoria = repository.save(new Categoria(form.getNome()));
+		return new CategoriaDTO(categoria.getNome());
 	}
 }

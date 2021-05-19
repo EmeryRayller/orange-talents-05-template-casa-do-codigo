@@ -27,25 +27,20 @@ public class AutorDTO {
 	@NotNull @Length(max = 400)
 	private String descricao; 
 
-	public AutorDTO() {}
+	@Deprecated
+	private AutorDTO() {}
 	
 	public AutorDTO(
 			@NotEmpty String nome, 
-			@NotEmpty @Email String email, 
+			@NotEmpty @Email String email,
+			LocalDateTime instante,
 			@NotNull @Length(max = 400) String descricao) {
 		
 		this.nome = nome;
 		this.email = email;
+		this.instante = dataAmigavel(instante);
 		this.descricao = descricao;
 	}
-	
-	public AutorDTO(Autor autor) {
-		this.nome = autor.getNome();
-		this.email = autor.getEmail();
-		this.instante = dataAmigavel(autor.getInstante());
-		this.descricao = autor.getDescricao();
-	}
-
 
 	public String getNome() {
 		return nome;
@@ -66,4 +61,16 @@ public class AutorDTO {
 	private String dataAmigavel(LocalDateTime dateTime) {
 		return dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm"));
 	}
+	
+	public Autor toModel() {
+		return new Autor(this.nome, this.email, this.descricao);
+	}
+
+	@Override
+	public String toString() {
+		return "AutorDTO [nome=" + nome + ", email=" + email + ", instante=" + instante + ", descricao=" + descricao
+				+ "]";
+	}
+	
+	
 }

@@ -14,9 +14,21 @@ public class CategoriaDTO {
 		this.nome = nome;
 	}
 	
-	public CategoriaDTO() {}
+	@Deprecated
+	private CategoriaDTO() {}
 	
 	public String getNome() {
 		return this.nome;
 	}
+	
+	public Categoria toModel() {
+		return new Categoria(this.nome);
+	}
+
+	@Override
+	public String toString() {
+		return "CategoriaDTO [nome=" + nome + "]";
+	}
+	
+	
 }

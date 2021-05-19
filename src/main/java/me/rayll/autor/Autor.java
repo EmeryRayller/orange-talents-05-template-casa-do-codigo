@@ -27,33 +27,20 @@ public class Autor {
 	
 	private String descricao;
 
-	public Autor(AutorDTO autorDto) {
-		this.nome = autorDto.getNome();
-		this.email = autorDto.getEmail();
-		this.descricao = autorDto.getDescricao();
-	}
+	@Deprecated
+	private Autor() {}
 	
-	public Autor() {
+	public Autor(String nome, String email, String descricao) {
+		this.nome = nome;
+		this.email = email;
+		this.descricao = descricao;
 	}
 
+	public AutorDTO toDTO() {
+		return new AutorDTO(this.nome, this.email, this.instante, this.descricao);
+	}
+	
 	public Long getId() {
-		return id;
+		return this.id;
 	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public LocalDateTime getInstante() {
-		return instante;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-	
 }

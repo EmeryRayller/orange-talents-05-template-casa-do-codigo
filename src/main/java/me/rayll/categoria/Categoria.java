@@ -21,8 +21,12 @@ public class Categoria {
 		this.nome = nome;
 	}
 	
-	public String getNome() {
-		return this.nome;
+	public Long getId() {
+		return this.id;
+	}
+	
+	public CategoriaDTO toDTO() {
+		return new CategoriaDTO(this.nome);
 	}
 	
 }

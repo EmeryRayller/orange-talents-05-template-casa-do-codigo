@@ -10,6 +10,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestControllerAdvice
 public class TratamentoDeExcessoesController {
@@ -26,6 +28,32 @@ public class TratamentoDeExcessoesController {
 			
 			listaDeErros.add(field + ": " + defaultErrorMessage);
 		}
+		return listaDeErros;
+	}
+	
+	@ExceptionHandler(value = ResponseStatusException.class)
+	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	public List<String> tratarExcessaoResponseStatus(ResponseStatusException ex) {
+		
+		List<String> listaDeErros = new ArrayList<>();
+		
+		listaDeErros.add(ex.getMessage());
+		
+		return listaDeErros;
+		
+	}
+	
+	@ExceptionHandler(value = MethodArgumentTypeMismatchException.class)
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	public List<String> tratarExcessaoMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex) {
+		
+		List<String> listaDeErros = new ArrayList<>();
+		
+		String message = "Tipo de parâmetro inválido na requisição!";
+		
+		listaDeErros.add(ex.getLocalizedMessage());
+		listaDeErros.add(message);
+		
 		return listaDeErros;
 	}
 	

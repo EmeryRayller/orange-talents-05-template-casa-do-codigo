@@ -22,7 +22,7 @@ import me.rayll.validacoes.valorunico.ValorUnico;
 
 public class LivroDTO {
 	
-	@JsonIgnore
+	
 	private Long id;
 	
 	@NotEmpty

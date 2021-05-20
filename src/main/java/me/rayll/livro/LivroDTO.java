@@ -1,15 +1,17 @@
-package me.rayll.livros;
+package me.rayll.livro;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -33,7 +35,7 @@ public class LivroDTO {
 	
 	private String sumario;
 	
-	@NotNull @Min(value=20)
+	@NotNull @DecimalMin(value = "20")
 	private BigDecimal preco;
 	
 	@Min(value=100)
@@ -52,7 +54,7 @@ public class LivroDTO {
 	private Long idAutor;
 	
 	public LivroDTO(Long id, @NotEmpty String titulo, @NotEmpty @Length(max = 500) String resumo, String sumario,
-			@NotNull @Min(2000) BigDecimal preco, @Min(100) Integer paginas, String isbn, 
+			@NotNull @DecimalMin(value = "20") BigDecimal preco, @Min(100) Integer paginas, String isbn, 
 			@Future @NotNull LocalDate lancamento,
 			@NotNull Long idCategoria, @NotNull Long idAutor) {
 		

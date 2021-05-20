@@ -1,4 +1,4 @@
-package me.rayll.livros;
+package me.rayll.livro;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

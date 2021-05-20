@@ -1,4 +1,4 @@
-package me.rayll.livros;
+package me.rayll.livro;
 
 import java.util.List;
 import java.util.stream.Collectors;

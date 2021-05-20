@@ -57,4 +57,15 @@ public class TratamentoDeExcessoesController {
 		return listaDeErros;
 	}
 	
+	@ExceptionHandler(value = IllegalStateException.class)
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	public List<String> tratarIllegalStateException(IllegalStateException ex) {
+		
+		List<String> listaDeErros = new ArrayList<>();
+		
+		listaDeErros.add(ex.getLocalizedMessage());
+		
+		return listaDeErros;
+	}
+	
 }

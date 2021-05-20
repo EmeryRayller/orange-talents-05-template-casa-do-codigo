@@ -2,6 +2,7 @@ package me.rayll.estado;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class EstadoController {
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.OK)
 	@Transactional
-	public EstadoDTO cadastroNovoEstado(@RequestBody EstadoDTO form) {
+	public EstadoDTO cadastroNovoEstado(@RequestBody @Valid EstadoDTO form) {
 		Estado novoEstado = form.toModel(manager);
 		manager.persist(novoEstado);
 		return novoEstado.toDTO();

@@ -25,10 +25,9 @@ public class IdUnicoValidator implements ConstraintValidator<IdUnico, Object>{
 	
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
-		Query query = manager.createQuery("select 1 from " +klass.getName()+" where " +field+ "=:value");
+		Query query = manager.createQuery("select 1 from " +klass.getName()+" e where e.pais." +field+ "=:value");
 		query.setParameter("value", Long.parseLong(value.toString()));
-		List<?> list = query.getResultList();
-		Assert.state(list.size() <=1, "Foi encontrado mais de uma "+klass+"com o atributo " +field+" = "+value.toString());
+		List<?> list = query.getResultList();	
 		
 		return list.isEmpty();
 	}

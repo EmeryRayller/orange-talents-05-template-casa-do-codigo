@@ -30,7 +30,6 @@ public class ValorUnicoValidator implements ConstraintValidator<ValorUnico, Obje
 		Query query = manager.createQuery("select 1 from " +klass.getName()+" where " +domainAttibute+ "=:value");
 		query.setParameter("value", value.toString());
 		List<?> list = query.getResultList();
-		Assert.state(list.size() <=1, "Foi encontrado mais de uma "+klass+"com o atributo " +domainAttibute+" = "+value.toString());
 		
 		return list.isEmpty();
 	}

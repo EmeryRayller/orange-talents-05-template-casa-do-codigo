@@ -19,7 +19,7 @@ public @interface ValorUnico {
 	
 	String fieldName();
 	
-	String message() default "Já existe um registro com o campo.";
+	String message() default "Foi encontrado um registro já salvo!";
 
 	Class<?>[] groups() default { };
 

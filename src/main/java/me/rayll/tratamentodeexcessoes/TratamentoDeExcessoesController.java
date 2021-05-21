@@ -23,10 +23,7 @@ public class TratamentoDeExcessoesController {
 		List<String> listaDeErros = new ArrayList<>();
 		
 		for(ObjectError error : ex.getAllErrors()) {
-			String field = ((FieldError) error).getField();
-			String defaultErrorMessage = error.getDefaultMessage();
-			
-			listaDeErros.add(field + ": " + defaultErrorMessage);
+			listaDeErros.add(error.getDefaultMessage());
 		}
 		return listaDeErros;
 	}
@@ -51,7 +48,7 @@ public class TratamentoDeExcessoesController {
 		
 		String message = "Tipo de parâmetro inválido na requisição!";
 		
-		listaDeErros.add(ex.getLocalizedMessage());
+		listaDeErros.add(ex.getMessage());
 		listaDeErros.add(message);
 		
 		return listaDeErros;
@@ -63,7 +60,7 @@ public class TratamentoDeExcessoesController {
 		
 		List<String> listaDeErros = new ArrayList<>();
 		
-		listaDeErros.add(ex.getLocalizedMessage());
+		listaDeErros.add(ex.getMessage());
 		
 		return listaDeErros;
 	}

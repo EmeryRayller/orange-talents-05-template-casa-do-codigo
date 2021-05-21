@@ -1,4 +1,4 @@
-package me.rayll.categoria;
+package me.rayll.cliente;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/casadocodigo/v1/categoria")
-public class CategoriaController {
+@RequestMapping("/casadocodigo/v1/cliente")
+public class ClienteController {
 	
 	@Autowired
 	private EntityManager manager;
-	
+
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.OK)
 	@Transactional
-	public CategoriaDTO cadastroNovaCategoria(@Valid @RequestBody CategoriaDTO form) {
-		Categoria categoriaParaSalvar = form.toModel();
-		manager.persist(categoriaParaSalvar);
-		return categoriaParaSalvar.toDTO();
+	public ClienteDTO cadastroNovoCliente(@RequestBody @Valid ClienteDTO form) {
+		Cliente novoCliente = form.toModel(manager);
+		manager.persist(novoCliente);
+		return novoCliente.toDTO();
 	}
 }

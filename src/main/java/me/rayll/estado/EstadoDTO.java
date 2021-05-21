@@ -9,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 
 import me.rayll.pais.Pais;
 import me.rayll.validacoes.idunico.IdUnico;
@@ -21,7 +22,7 @@ public class EstadoDTO {
 	@NotEmpty
 	private String nome;
 	
-	@NotEmpty @IdUnico(domainClass = Pais.class, fieldName = "id")
+	@NotNull @IdUnico(domainClass = Estado.class, fieldName = "id")
 	private Long idPais;
 
 	public Long getId() {

@@ -31,5 +31,9 @@ public class Estado {
 	public EstadoDTO toDTO() {
 		return new EstadoDTO(this.id, this.nome, this.pais.getId());
 	}
+
+	public Long getId() {
+		return this.id;
+	}
 	
 }

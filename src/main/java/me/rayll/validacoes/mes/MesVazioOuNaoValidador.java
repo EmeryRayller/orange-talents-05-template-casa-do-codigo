@@ -1,18 +1,19 @@
 package me.rayll.validacoes.mes;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
-
 import me.rayll.cliente.ClienteDTO;
+import me.rayll.estado.Estado;
 
 public class MesVazioOuNaoValidador implements ConstraintValidator<MesVazioOuNao, ClienteDTO>{
 
-	@Autowired
+	@PersistenceContext
 	private EntityManager manager;
 	
 	@Override
@@ -29,12 +30,12 @@ public class MesVazioOuNaoValidador implements ConstraintValidator<MesVazioOuNao
 			return false;
 		}
 		
-		TypedQuery<Long> queryEstado = manager.createQuery("select count(es) from Estado es where es.id=:PIdEstado and where es.pais.id=:PIdPais", Long.class);
+		TypedQuery<Estado> queryEstado = manager.createQuery("select es from Estado es where es.id=:PIdEstado and es.pais.id=:PIdPais", Estado.class);
 		queryEstado.setParameter("PIdEstado", idEstado);
 		queryEstado.setParameter("PIdPais", idPais);
-		long totalEstado = queryEstado.getSingleResult();
+		List<Estado> lista = queryEstado.getResultList();
 		
-		if(totalEstado == 0) {
+		if(lista.size() == 0) {
 			return false;
 		}
 		
